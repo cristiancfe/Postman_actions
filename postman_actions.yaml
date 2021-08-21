@@ -12,3 +12,4 @@ postman_tests:
         when: always
         paths:
             - Report.html
+            
