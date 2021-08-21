@@ -1,0 +1,496 @@
+{
+	"info": {
+		"_postman_id": "d1aa39ab-e01b-4010-8ad6-42505f2ed2f0",
+		"name": "Auth",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Signup - Cadastro com sucesso",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function firstName() {\r",
+							"var firstName = [\"Sandra\", \"William\", \"André\", \"Mariano\",\"Fabiano\", \"Miguel\",\"Sibele\",\"José\",\"João\",\"Antônio\", \"Samuel\",\"Timóteo\",\"Roberval\",\"Natanael\",\"Tibúrcio\", \"Godofredo\",\"Eustáqui\",\"Pafúncio\",\"Elza\", \"Elga\",\"Francisco\", \"Eduardo\", \"Lisandro\",\"Cristiane\",\"Eliza\", \"Luiza\",\"Poliana\", \"Milena\", \"Adroaldo\", \"Edson\",\"Agda\", \"Andréia\",  \"Adriano\", \"Abinadar\", \"Alice\", \"Ariana\", \"Alencar\", \"Alcemir\", \"Aline\", \"Américo\", \"Ariane\", \"Bruno\", \"Bruna\", \"Beatriz\", \"Berenice\", \"Benedito\", \"Benedita\", \"Carlos\", \"Camila\", \"Caroline\", \"Camilo\", \"Ceverino\", \"Denis\", \"Denise\", \"Daniel\", \"Dorivaldo\", \"Darley\", \"Edson\", \"Eliane\", \"Eliana\", \"Ester\", \"Everaldo\", \"Elias\", \"Estenio\", \"Etevaldo\", \"Euclides\", \"Eliezer\", \"Everaldo\", \"Emanuel\", \"Eunice\", \"Elaine\", \"Jaqueline\", \"Josivaldo\", \"josefina\", \"Larissa\", \"Laís\", \"Laercío\", \"Leandro\", \"Lucas\", \"Maria\", \"Marcos\", \"Melissa\", \"Marcelo\", \"Mariana\", \"Matheus\", \"Milena\", \"Neilson\", \"Naiara\", \"Nilson\", \"Nerivaldo\", \"Noemia\", \"Núbia\", \"Nilvan\", \"Olavo\", \"Oliver\", \"Olindo\", \"Paulo\", \"Paula\", \"Pedro\", \"Pedrina\", \"Pivanne\", \"Patrícia\", \"Quelvin\", \"Queila\", \"Ronaldo\", \"Ronan\", \"Romildo\", \"Rodolfo\", \"Rita\", \"Ravier\", \"Romã\", \"Salivan\", \"Selton\", \"Simirá\", \"Tadeu\", \"Taís\", \"Tamilá\", \"Tadeu\", \"Telma\", \"Ulisson\", \"Umberto\", \"Vicente\", \"Vanice\", \"Vera\", \"Valdermor\", \"Zulmira\", \"Zenira\"];\r",
+							"var randomItem = firstName[Math.floor(Math.random() * firstName.length)];\r",
+							"return randomItem;\r",
+							"}\r",
+							"pm.environment.set(\"FirstName\" , firstName());\r",
+							"\r",
+							"function lastName() {\r",
+							"\tvar lastName = [\"Alves da Silva\", \"Schmittel\", \"Eisenhut\", \"Schereder\", \"Kenedy\", \"Silva\", \"Duarte\", \"Gonçalves\", \"Goldstein\", \"Ribeiro\", \"Fonseca\", \"Andrade Barbosa\", \"Barbosa Oliveira\", \"Oliveira da Silva\", \"Alves Pereira\", \"Conceição Barbosa\", \"Allen Young\", \"Hernandez King\", \"Wright Lopez\", \"Hill Scott\", \"Green Adams\", \"Conceição da Costa\", \"da Costa Oliveira\", \"Rodrigues de Oliveira\", \"Amaral Neto de Souza\", \"Pereira da Conceição\", \"Barros Neto de Andrade\", \"Borges de Andrade Pereira da Silva\", \"Batista Campos do Amaral\", \"Cardoso de Oliveira\", \"Pontes Guimarães\", \"Dias de Jesus\", \"Barbos de Lima\", \"Gonçalves da Silva\", \"Gonsalves de Lima\", \"Pereira de Oliveira Batista\", \"Dias de Freitas\", \"Ferreira\", \"Garcia da Paixão\", \"Lima Lopes\", \"Jesus da Silva\", \"da Silva de Lima\", \"da Silva Gonsalves Texeira\", \"Fernandes de Paula\", \"de Paula da Silva\", \"Barbosa de Mello Oliveira\", \"Oliveira Neto Conceição da Paixão\"];\r",
+							"var randomItem = lastName[Math.floor(Math.random() * lastName.length)];\r",
+							"return randomItem;\r",
+							"}\r",
+							"pm.environment.set(\"LastName\" , lastName());\r",
+							"// concatena o rimeiro e o segundo e grava na variavel \r",
+							"pm.environment.set(\"FullName\", pm.variables.get(\"FirstName\") + \" \" + pm.variables.get(\"LastName\"));\r",
+							"\r",
+							" \r",
+							"\r",
+							"//Last emailProvider Generator\r",
+							"function emailProvider() {\r",
+							"\r",
+							" var email = [\"@hotmail.com\", \"@gmail.com\", \"@yahoo.com.br\", \"@terra.com.br\"];\r",
+							"var randomItem = email[Math.floor(Math.random() * email.length)];\r",
+							"return randomItem;\r",
+							"}\r",
+							"\r",
+							"//grava o provedor de email\r",
+							"pm.environment.set(\"EmailProvider\", emailProvider());\r",
+							"\r",
+							"\r",
+							"//GuidID Generator\r",
+							"function guidID() {\r",
+							"return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {\r",
+							"var r = Math.random() * 16 | 0,\r",
+							"v = c == 'x' ? r : (r & 0x3 | 0x8);\r",
+							"return v.toString(16);\r",
+							"});\r",
+							"}\r",
+							"\r",
+							"pm.environment.set(\"GuidID\", guidID());\r",
+							"\r",
+							"pm.environment.set(\"Email\", pm.environment.get(\"GuidID\") + \"_\" + pm.environment.get(\"FirstName\") + pm.environment.get(\"EmailProvider\"));\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"check if the FullName\", function() {    \r",
+							"    pm.expect(pm.variables.get(\"FullName\")).to.eql    \r",
+							"    (JSON.parse(responseBody).user.name);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"pm.test(\"check if the Email\", function() {    \r",
+							"    pm.expect(pm.variables.get(\"Email\")).to.eql    \r",
+							"    (JSON.parse(responseBody).user.email);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"check if the Status\", function() {    \r",
+							"    pm.expect(true).to.eql    \r",
+							"    (JSON.parse(responseBody).user.status);\r",
+							"});\r",
+							"\r",
+							"function tokenResult(){\r",
+							"if (JSON.parse(responseBody).token != null){\r",
+							"var tokenResult =true\r",
+							"}else{\r",
+							"var tokenResult = false\r",
+							"}\r",
+							"return tokenResult\r",
+							"\r",
+							"}\r",
+							"pm.environment.set(\"TokenResult\", tokenResult());\r",
+							"\r",
+							"pm.test(\"check Token is true\", function() {    \r",
+							"    pm.expect(true).to.eql    \r",
+							"    (JSON.parse(responseBody).user.status);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "postman-Token",
+						"value": "<calculated when request is sent>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"{{FullName}}\",\r\n    \"email\": \"{{Email}}\",\r\n    \"password\": \"{{password}}\",\r\n    \"confirm_password\": \"{{password}}\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/signup",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup - Usuario ja cadastrado",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"check if the Status\", function () {    \r",
+							"    pm.expect(pm.variables.get(\"UsuarioCadastrado\")).to.eql\r",
+							"    (JSON.parse(responseBody).errors[0]);\r",
+							"\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "postman-Token",
+						"value": "<calculated when request is sent>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\":  \"{{FullName}}\",\r\n\"email\": \"{{Email}}\",\r\n\"password\": \"{{password}}\",\r\n\"confirm_password\": \"{{password}}\"\r\n}\r\n\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/signup",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Email invalido",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function firstName() {\r",
+							"var firstName = [\"Sandra\", \"William\", \"André\", \"Mariano\",\"Fabiano\", \"Miguel\",\"Sibele\",\"José\",\"João\",\"Antônio\", \"Samuel\",\"Timóteo\",\"Roberval\",\"Natanael\",\"Tibúrcio\", \"Godofredo\",\"Eustáqui\",\"Pafúncio\",\"Elza\", \"Elga\",\"Francisco\", \"Eduardo\", \"Lisandro\",\"Cristiane\",\"Eliza\", \"Luiza\",\"Poliana\", \"Milena\", \"Adroaldo\", \"Edson\"];\r",
+							"var randomItem = firstName[Math.floor(Math.random() * firstName.length)];\r",
+							"return randomItem;\r",
+							"}\r",
+							"pm.environment.set(\"FirstName\" , firstName());\r",
+							"\r",
+							"function lastName() {\r",
+							"\tvar lastName = [\"Alves da Silva\", \"Schmittel\", \"Eisenhut\", \"Schereder\", \"Kenedy\", \"Silva\", \"Duarte\", \"Gonçalves\", \"Goldstein\", \"Ribeiro\", \"Fonseca\"];\r",
+							"var randomItem = lastName[Math.floor(Math.random() * lastName.length)];\r",
+							"return randomItem;\r",
+							"}\r",
+							"pm.environment.set(\"LastName\" , lastName());\r",
+							"// concatena o rimeiro e o segundo e grava na variavel \r",
+							"pm.environment.set(\"FullName\", pm.variables.get(\"FirstName\") + \" \" + pm.variables.get(\"LastName\"));\r",
+							"\r",
+							"\r",
+							"\r",
+							"function lastEmail() {\r",
+							"\tvar lastEmail = [\"@gmail.com\", \"@bol.com.br\", \"@yahoo.com.br\",\"@terra.com.br\"];\r",
+							"var randomItem = lastEmail[Math.floor(Math.random() * lastEmail.length)];\r",
+							"return randomItem;\r",
+							"}\r",
+							"pm.environment.set(\"LastEmail\" , lastEmail());\r",
+							"pm.environment.set(\"EmailCompleto\", pm.variables.get(\"FirstName\") + pm.variables.get(\"LastEmail\"));\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "postman-Token",
+						"value": "<calculated when request is sent>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Sandra\",\r\n    \"email\": \"sandra.com\",\r\n    \"password\": \"Teste@1234\",\r\n    \"confirm_password\": \"Teste@1234\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/signup",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Formato da senha invalido",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function firstName() {\r",
+							"var firstName = [\"Sandra\", \"William\", \"André\", \"Mariano\",\"Fabiano\", \"Miguel\",\"Sibele\",\"José\",\"João\",\"Antônio\", \"Samuel\",\"Timóteo\",\"Roberval\",\"Natanael\",\"Tibúrcio\", \"Godofredo\",\"Eustáqui\",\"Pafúncio\",\"Elza\", \"Elga\",\"Francisco\", \"Eduardo\", \"Lisandro\",\"Cristiane\",\"Eliza\", \"Luiza\",\"Poliana\", \"Milena\", \"Adroaldo\", \"Edson\"];\r",
+							"var randomItem = firstName[Math.floor(Math.random() * firstName.length)];\r",
+							"return randomItem;\r",
+							"}\r",
+							"pm.environment.set(\"FirstName\" , firstName());\r",
+							"\r",
+							"function lastName() {\r",
+							"\tvar lastName = [\"Alves da Silva\", \"Schmittel\", \"Eisenhut\", \"Schereder\", \"Kenedy\", \"Silva\", \"Duarte\", \"Gonçalves\", \"Goldstein\", \"Ribeiro\", \"Fonseca\"];\r",
+							"var randomItem = lastName[Math.floor(Math.random() * lastName.length)];\r",
+							"return randomItem;\r",
+							"}\r",
+							"pm.environment.set(\"LastName\" , lastName());\r",
+							"// concatena o rimeiro e o segundo e grava na variavel \r",
+							"pm.environment.set(\"FullName\", pm.variables.get(\"FirstName\") + \" \" + pm.variables.get(\"LastName\"));\r",
+							"\r",
+							"\r",
+							"\r",
+							"function lastEmail() {\r",
+							"\tvar lastEmail = [\"@gmail.com\", \"@bol.com.br\", \"@yahoo.com.br\",\"@terra.com.br\"];\r",
+							"var randomItem = lastEmail[Math.floor(Math.random() * lastEmail.length)];\r",
+							"return randomItem;\r",
+							"}\r",
+							"pm.environment.set(\"LastEmail\" , lastEmail());\r",
+							"pm.environment.set(\"EmailCompleto\", pm.variables.get(\"FirstName\") + pm.variables.get(\"LastEmail\"));\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "postman-Token",
+						"value": "<calculated when request is sent>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Sandra\",\r\n\"email\": \"sandra@gmail.com\",\r\n\"password\": \"1234\",\r\n\"confirm_password\": \"1234\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/signup",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Senhas não conferem",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"function firstName() {\r",
+							"var firstName = [\"Sandra\", \"William\", \"André\", \"Mariano\",\"Fabiano\", \"Miguel\",\"Sibele\",\"José\",\"João\",\"Antônio\", \"Samuel\",\"Timóteo\",\"Roberval\",\"Natanael\",\"Tibúrcio\", \"Godofredo\",\"Eustáqui\",\"Pafúncio\",\"Elza\", \"Elga\",\"Francisco\", \"Eduardo\", \"Lisandro\",\"Cristiane\",\"Eliza\", \"Luiza\",\"Poliana\", \"Milena\", \"Adroaldo\", \"Edson\"];\r",
+							"var randomItem = firstName[Math.floor(Math.random() * firstName.length)];\r",
+							"return randomItem;\r",
+							"}\r",
+							"pm.environment.set(\"FirstName\" , firstName());\r",
+							"\r",
+							"function lastName() {\r",
+							"\tvar lastName = [\"Alves da Silva\", \"Schmittel\", \"Eisenhut\", \"Schereder\", \"Kenedy\", \"Silva\", \"Duarte\", \"Gonçalves\", \"Goldstein\", \"Ribeiro\", \"Fonseca\"];\r",
+							"var randomItem = lastName[Math.floor(Math.random() * lastName.length)];\r",
+							"return randomItem;\r",
+							"}\r",
+							"pm.environment.set(\"LastName\" , lastName());\r",
+							"// concatena o rimeiro e o segundo e grava na variavel \r",
+							"pm.environment.set(\"FullName\", pm.variables.get(\"FirstName\") + \" \" + pm.variables.get(\"LastName\"));\r",
+							"\r",
+							"\r",
+							"\r",
+							"function lastEmail() {\r",
+							"\tvar lastEmail = [\"@gmail.com\", \"@bol.com.br\", \"@yahoo.com.br\",\"@terra.com.br\"];\r",
+							"var randomItem = lastEmail[Math.floor(Math.random() * lastEmail.length)];\r",
+							"return randomItem;\r",
+							"}\r",
+							"pm.environment.set(\"LastEmail\" , lastEmail());\r",
+							"pm.environment.set(\"EmailCompleto\", pm.variables.get(\"FirstName\") + pm.variables.get(\"LastEmail\"));\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "postman-Token",
+						"value": "<calculated when request is sent>",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"name\": \"Sandra\",\r\n\"email\": \"sandra@gmail.com\",\r\n\"password\": \"Teste@1234\",\r\n\"confirm_password\": \"12\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URL}}/signup",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"signup"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
