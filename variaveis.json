@@ -1,0 +1,16 @@
+{
+	"id": "31789c8e-e3ae-4f56-89ec-561b8042ca1e",
+	"name": "Production",
+	"values": [
+		{
+			"key": "rb_url",
+			"value": "https://restful-booker.herokuapp.com",
+			"type": "text",
+			"description": "",
+			"enabled": true
+		}
+	],
+	"_postman_variable_scope": "environment",
+	"_postman_exported_at": "2021-08-21T13:17:40.012Z",
+	"_postman_exported_using": "Postman/8.10.0"
+}
