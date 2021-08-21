@@ -28,7 +28,7 @@ jobs:
         run: mkdir -p testResults
       
       - name: Run API Tests
-        run: newman run Auth.postman_collection -e QA.postman_environment -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html
+        run: newman run "Auth.postman_collection" -e "QA.postman_environment" -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html
 
     # Upload the contents of Test Results directory to workspace
       - name: Output the run Details
