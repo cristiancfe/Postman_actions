@@ -8,7 +8,7 @@ postman_tests:
     script:
         - newman --version
         - npm install -g newman-reporter-htmlextra
-        - newman run auth.json -e qa.json --reporters cli,-r htmlextra --reporter-htmlextra-export Report.html --insecure
+        
     artifacts:
         when: always
         paths:
