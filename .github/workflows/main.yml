@@ -23,8 +23,7 @@ jobs:
           npm install -g newman
           npm install -g newman-reporter-htmlextra
           
-    
-      
+          
       - name: Run API Tests
         run: newman run auth.json -e qa.json" -r htmlextra --reporter-htmlextra-export testResults/htmlreport.html
 
