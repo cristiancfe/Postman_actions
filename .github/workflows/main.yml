@@ -37,7 +37,7 @@ jobs:
         
       # Runs a set of commands using the runners shell
       - name: Step 3 Execute collection
-        run: newman run ./auth.json -e ./dev.json --reporters cli, -r htmlextra --reporter-htmlextra-export ./results/Report.html --insecure
+        run: newman run Auth.postman_collection.json -e QA.postman_environment.json --reporters cli, -r htmlextra --reporter-htmlextra-export ./results/Report.html --insecure
    
       # Runs a set of commands using the runners shell
       - name: Step 4 Archive production artifacts
