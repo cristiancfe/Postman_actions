@@ -34,12 +34,12 @@ jobs:
         run: 
           newman run  Auth.postman_collection.json -e  QA.postman_environment.json --reporters cli, -r htmlextra --reporter-htmlextra-export ./results/Report.html --insecure
    
-      # Runs a set of commands using the runners shell
-      - name: Step 4 Archive production artifacts
-        uses: actions/upload-artifact@v2
+      - name: Arquive Robot Framework results 
+        if: ${{always() }}
+        uses: actions/upload-artifact@v3
         with:
-            name: report
-            path: ./results
+         name: CRUD-robot-results
+         path: ./results
 
       - name: Setup Pages
         uses: actions/configure-pages@v2
