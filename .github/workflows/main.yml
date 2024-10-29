@@ -1,27 +1,20 @@
 
-name: Test
-# Controls when the action will run. 
-# Controls when the action will run. 
-on:
-  # Triggers the workflow on push or pull request events but only for the main branch
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+name:  Testes API
+on: push
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
+  test:
+    name: Run Testes
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    permissions:
+     contents: read
+     pages: write
+     id-token: write
+    environment:
+      name: github-pages
+      url: https://cristiancfe.github.io/Postman_actions/report.html
+
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: repositorio 
         uses: actions/checkout@v2
 
@@ -46,4 +39,16 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
             name: report
-            path: ./results/Report.html
+            path: ./results
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+         path: ./results/
+
+      - name: Deploy to Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
