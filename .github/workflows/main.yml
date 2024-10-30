@@ -22,15 +22,9 @@ jobs:
         run: npm install -g newman newman-reporter-htmlextra
 
       - name: Run Postman tests
-        env:
-          # Consider using secrets for environment variables
-          POSTMAN_COLLECTION: ${{ secrets.POSTMAN_COLLECTION }}
-          POSTMAN_ENVIRONMENT: ${{ secrets.POSTMAN_ENVIRONMENT }}
         run: |
-          newman run "$POSTMAN_COLLECTION" \
-            -e "$POSTMAN_ENVIRONMENT" \
-            -r htmlextra \
-            --reporter-htmlextra-export ./results/report.html
+          newman run Auth.postman_collection.json -e QA.postman_environment.json
+          -r htmlextra --reporter-htmlextra-export ./results/report.html
 
       - name: Upload test results as artifacts
         uses: actions/upload-artifact@v3
@@ -42,7 +36,6 @@ jobs:
         if: success()  # Only deploy on successful test run
         uses: actions/deploy-pages@v1
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
           source: ./results  # Update path if results structure is different
           branch: gh-pages  # Specify the branch for published reports
 
