@@ -47,6 +47,16 @@ jobs:
           source: ./results  # Update path if results structure is different
           branch: gh-pages  # Specify the branch for published reports
 
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: ./results
+        
+      - name: Deploy to Github Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
           # Optional configurations (customize as needed)
-          fail-on-missing-files: false  # Prevent failures due to missing files
-          single-branch: true  # Deploy only to the specified branch
+        
