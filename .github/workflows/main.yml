@@ -1,54 +1,51 @@
+name: Postman API Tests
 
-name:  Testes API
-on: push
+on:
+  push:
+    branches: [ main ]  # Only run on pushes to the main branch
+
 jobs:
-  test:
-    name: Run Testes
+  run-tests:
+    name: Run Postman Tests
     runs-on: ubuntu-latest
 
-    permissions:
-     contents: read
-     pages: write
-     id-token: write
-    environment:
-      name: github-pages
-      url: https://cristiancfe.github.io/Postman_actions/report.html
-
     steps:
-      - name: repositorio 
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      # Runs a set of commands using the runners shell
-      - name: Step 1 Check version Newman and Node
-        uses: actions/setup-python@v2
+      - name: Use Node.js 16 (recommended)
+        uses: actions/setup-node@v3
         with:
-          python-version: '3.x'
-          
-      # Runs a single command using the runners shell      
-      - name: Step 2 Install Newman-Reporter-Htmlextra
-        run: 
-          npm install -g newman-reporter-htmlextra
-        
-      # Runs a set of commands using the runners shell
-      - name: Step 3 Execute collection
-        run: 
-          newman run  Auth.postman_collection.json -e  QA.postman_environment.json --reporters cli, -r htmlextra --reporter-htmlextra-export ./results/Report.html --insecure
-   
-      - name: Arquive Testes API results 
-        if: ${{always() }}
+          node-version: 16
+
+      - name: Install dependencies
+        run: npm install -g newman newman-reporter-htmlextra
+
+      - name: Run Postman tests
+        env:
+          # Consider using secrets for environment variables
+          POSTMAN_COLLECTION: ${{ secrets.POSTMAN_COLLECTION }}
+          POSTMAN_ENVIRONMENT: ${{ secrets.POSTMAN_ENVIRONMENT }}
+        run: |
+          newman run "$POSTMAN_COLLECTION" \
+            -e "$POSTMAN_ENVIRONMENT" \
+            -r htmlextra \
+            --reporter-htmlextra-export ./results/report.html
+
+      - name: Upload test results as artifacts
         uses: actions/upload-artifact@v3
         with:
-         name: CRUD-robot-results
-         path: ./results
+          name: test-results
+          path: ./results
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v2
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v1
-        with:
-         path: ./results/
-
-      - name: Deploy to Github Pages
-        id: deployment
+      - name: Deploy test results to GitHub Pages (optional)
+        if: success()  # Only deploy on successful test run
         uses: actions/deploy-pages@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          source: ./results  # Update path if results structure is different
+          branch: gh-pages  # Specify the branch for published reports
+
+          # Optional configurations (customize as needed)
+          fail-on-missing-files: false  # Prevent failures due to missing files
+          single-branch: true  # Deploy only to the specified branch
